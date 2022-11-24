@@ -9,6 +9,26 @@ const conn = mysql.createConnection({
   database: "bodaboda",
 });
 
+const mysql2 = require("mysql2");
+
+const connect = mysql2.createConnection({
+  host: "localhost",
+  user: "Alvine",
+  password: "Heidi2022",
+  database: "bagisto",
+});
+
+connect.connect(function (err) {
+  if (err) throw err;
+  console.log("mysql2 try connection is a success bagisto");
+  const sql =
+    "CREATE TABLE nodejs (id INT AUTO_INCREEMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(100))";
+  connect.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table is created");
+  });
+});
+
 conn.connect(function (err) {
   if (err) throw err;
   console.log("Mysql Connected");
